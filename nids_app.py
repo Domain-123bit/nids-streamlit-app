@@ -4,8 +4,8 @@ import numpy as np
 import joblib
 
 # Load the saved model and tools using full paths
-model = joblib.load(r'C:\random_forest_nslkdd.pkl')
-scaler = joblib.load(r'C:\scaler.pkl')
+model = joblib.load('random_forest_nslkdd.pkl')
+scaler = joblib.load('scaler.pkl')
 label_encoders = {}  # Set to empty if not used
 
 # Define input feature columns
