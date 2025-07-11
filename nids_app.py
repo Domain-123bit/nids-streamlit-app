@@ -128,3 +128,24 @@ if st.button("🔍 Evaluate on Test Set"):
 
     except Exception as e:
         st.error(f"Something went wrong: {e}")
+import matplotlib.pyplot as plt
+
+st.markdown("---")
+st.subheader("📊 Feature Importance (Random Forest)")
+
+if hasattr(model, "feature_importances_"):
+    importances = model.feature_importances_
+    feature_names = [f'Feature {i}' for i in range(len(importances))]
+
+    fi_df = pd.DataFrame({
+        "Feature": feature_names,
+        "Importance": importances
+    }).sort_values(by="Importance", ascending=False).head(10)
+
+    fig, ax = plt.subplots()
+    ax.barh(fi_df["Feature"], fi_df["Importance"], color='skyblue')
+    ax.set_xlabel("Importance Score")
+    ax.set_title("Top 10 Important Features")
+    st.pyplot(fig)
+else:
+    st.info("Feature importance not available for this model.")
