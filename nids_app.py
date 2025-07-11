@@ -4,7 +4,9 @@ import numpy as np
 import joblib
 
 # Load the saved model and tools using full paths
-model = joblib.load('random_forest_nslkdd.pkl')
+import gzip
+with gzip.open('random_forest_nslkdd_compressed.pkl.gz', 'rb') as f:
+    model = joblib.load(f)
 scaler = joblib.load('scaler.pkl')
 label_encoders = {}  # Set to empty if not used
 
